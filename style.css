@@ -1,0 +1,1219 @@
+/* ==============================
+   CHEMTOOLKIT - MAIN DESIGN
+================================ */
+
+:root {
+    --bg: #0b1120;
+    --sidebar: #111a2e;
+    --card: #17243a;
+    --card-hover: #1e304c;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --accent: #06b6d4;
+    --border: #263750;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    width: 260px;
+    background: var(--sidebar);
+    padding: 25px 18px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 45px;
+}
+
+.logo span {
+    font-size: 30px;
+}
+
+.logo h2 {
+    font-size: 21px;
+    color: var(--accent);
+}
+
+.menu-label {
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.nav-item {
+    background: transparent;
+    color: var(--muted);
+    border: none;
+    padding: 14px;
+    text-align: left;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background: rgba(6, 182, 212, 0.13);
+    color: var(--accent);
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    padding-top: 30px;
+}
+
+#themeToggle {
+    width: 100%;
+    padding: 12px;
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.sidebar-bottom p {
+    color: var(--muted);
+    text-align: center;
+    margin-top: 20px;
+    font-size: 12px;
+}
+
+/* MAIN CONTENT */
+
+.main-content {
+    flex: 1;
+    padding: 35px;
+    overflow-x: hidden;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.topbar h1 {
+    font-size: 28px;
+    margin-bottom: 7px;
+}
+
+.topbar p,
+.welcome-section p {
+    color: var(--muted);
+}
+
+.status {
+    color: #22c55e;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* WELCOME */
+
+.welcome-section {
+    background: linear-gradient(120deg, #12344c, #164e63);
+    padding: 35px;
+    border-radius: 15px;
+    margin-bottom: 35px;
+}
+
+.welcome-section h2 {
+    font-size: 25px;
+    margin-bottom: 12px;
+}
+
+.welcome-section p {
+    color: #cbd5e1;
+}
+
+/* STATISTICS */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 25px;
+    border-radius: 13px;
+}
+
+.stat-card span {
+    font-size: 27px;
+}
+
+.stat-card h3 {
+    font-size: 28px;
+    margin: 15px 0 5px;
+    color: var(--accent);
+}
+
+.stat-card p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* TOOL CARDS */
+
+.section-heading {
+    margin-bottom: 20px;
+    font-size: 21px;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.tool-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 25px;
+    border-radius: 13px;
+    transition: 0.3s;
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+    background: var(--card-hover);
+    border-color: var(--accent);
+}
+
+.tool-card span {
+    font-size: 30px;
+}
+
+.tool-card h3 {
+    font-size: 16px;
+    margin: 18px 0 10px;
+}
+
+.tool-card p {
+    color: var(--muted);
+    font-size: 13px;
+    min-height: 35px;
+}
+
+.tool-card button {
+    margin-top: 20px;
+    background: transparent;
+    border: none;
+    color: var(--accent);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* PAGE NAVIGATION */
+
+.page {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* LIGHT THEME */
+
+body.light-theme {
+    --bg: #f1f5f9;
+    --sidebar: #ffffff;
+    --card: #ffffff;
+    --card-hover: #e2e8f0;
+    --text: #0f172a;
+    --muted: #64748b;
+    --border: #dbe3ee;
+    --accent: #0891b2;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 850px) {
+
+    .sidebar {
+        width: 210px;
+    }
+
+    .main-content {
+        padding: 22px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .app-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .logo {
+        margin-bottom: 20px;
+    }
+
+    nav {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sidebar-bottom {
+        margin-top: 20px;
+    }
+
+    .main-content {
+        padding: 18px;
+    }
+
+    .topbar {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .welcome-section {
+        padding: 22px;
+    }
+
+}/* =================================
+   CHEMISTRY CALCULATOR INTERFACE
+================================= */
+
+.calculator-header {
+    margin-bottom: 30px;
+}
+
+.calculator-header h2 {
+    font-size: 26px;
+    margin-bottom: 10px;
+    color: var(--accent);
+}
+
+.calculator-header p {
+    color: var(--muted);
+}
+
+.calculator-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+}
+
+.calculator-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 25px;
+    transition: 0.3s ease;
+}
+
+.calculator-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+}
+
+.calculator-card h3 {
+    font-size: 19px;
+    margin-bottom: 10px;
+}
+
+.calculator-card p {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 22px;
+}
+
+.calculator-card label {
+    display: block;
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 8px;
+    margin-top: 16px;
+}
+
+.calculator-card input {
+    width: 100%;
+    padding: 13px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+    font-size: 14px;
+}
+
+.calculator-card input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.12);
+}
+
+.calculator-card button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 22px;
+    border: none;
+    border-radius: 8px;
+    background: var(--accent);
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.calculator-card button:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+.result-box {
+    margin-top: 20px;
+    padding: 15px;
+    min-height: 50px;
+    border-radius: 8px;
+    background: rgba(6, 182, 212, 0.08);
+    border: 1px solid var(--border);
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 14px;
+    overflow-wrap: anywhere;
+}
+
+/* RESPONSIVE CALCULATORS */
+
+@media (max-width: 850px) {
+
+    .calculator-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+/* MOLECULAR MASS CALCULATOR */
+
+.molecular-main {
+    grid-column: span 1;
+}
+
+#molecularBreakdown {
+    margin-top: 20px;
+    line-height: 2;
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.molecular-examples {
+    margin-top: 25px;
+}
+
+.formula-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.formula-buttons button {
+    padding: 12px 18px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--accent);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.formula-buttons button:hover {
+    background: var(--accent);
+    color: white;
+}
+
+.molecular-breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.molecular-total {
+    margin-top: 15px;
+    padding: 15px;
+    background: rgba(6, 182, 212, 0.1);
+    border-radius: 8px;
+    color: var(--accent);
+    font-weight: bold;
+}
+/* TITRATION CALCULATOR */
+
+#titration .calculator-card {
+    margin-bottom: 25px;
+}
+
+#titration .calculator-card h3 {
+    color: var(--accent);
+    margin-bottom: 20px;
+}
+
+#titration label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 7px;
+    font-weight: 500;
+}
+
+#titration input,
+#titration select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    color: var(--text);
+    outline: none;
+}
+
+#titration input:focus,
+#titration select:focus {
+    border-color: var(--accent);
+}
+
+#titration button {
+    margin-top: 22px;
+    padding: 14px 22px;
+    background: var(--accent);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#titration button:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+#titration .result-box {
+    margin-top: 20px;
+    padding: 18px;
+    border-radius: 10px;
+    line-height: 1.7;
+}
+
+#titrationWorking {
+    margin-top: 20px;
+    line-height: 1.8;
+}
+
+#titrationWorking .working-step {
+    padding: 12px;
+    margin-bottom: 10px;
+    border-left: 3px solid var(--accent);
+    background: var(--card-bg);
+    border-radius: 5px;
+}
+/* CHEMICAL EQUATION BALANCER */
+
+#balancer .calculator-card {
+    margin-bottom: 25px;
+}
+
+#balancer .calculator-card h3 {
+    color: var(--accent);
+    margin-bottom: 20px;
+}
+
+#balancer label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+#balancer input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    color: var(--text);
+    outline: none;
+    font-size: 16px;
+}
+
+#balancer input:focus {
+    border-color: var(--accent);
+}
+
+#balancer button {
+    padding: 13px 20px;
+    margin-top: 18px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    border: none;
+    border-radius: 8px;
+    background: var(--accent);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#balancer button:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+#balancer .result-box {
+    margin-top: 22px;
+    padding: 18px;
+    border-radius: 10px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+#balancerWorking {
+    margin-top: 20px;
+    line-height: 1.8;
+}
+
+#balancerWorking .working-step {
+    padding: 14px;
+    margin-bottom: 12px;
+    border-left: 3px solid var(--accent);
+    background: var(--card-bg);
+    border-radius: 6px;
+}
+
+#balancer .formula-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+/* INTERACTIVE PERIODIC TABLE */
+
+#periodic .calculator-card {
+    margin-bottom: 25px;
+}
+
+#periodic .calculator-card h3 {
+    color: var(--accent);
+    margin-bottom: 20px;
+}
+
+#elementSearch {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card-bg);
+    color: var(--text);
+    font-size: 16px;
+    outline: none;
+}
+
+#elementSearch:focus {
+    border-color: var(--accent);
+}
+
+.periodic-table {
+    display: grid;
+    grid-template-columns: repeat(18, minmax(42px, 1fr));
+    gap: 5px;
+    overflow-x: auto;
+    padding: 10px 0;
+}
+
+.element {
+    min-width: 42px;
+    min-height: 65px;
+    padding: 5px 2px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.element:hover {
+    transform: scale(1.08);
+    border-color: var(--accent);
+}
+
+.element .atomic-number {
+    font-size: 10px;
+    align-self: flex-start;
+    margin-left: 4px;
+}
+
+.element .symbol {
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.element .element-name {
+    font-size: 8px;
+    overflow-wrap: anywhere;
+}
+
+.alkali { background: #a94442; color: white; }
+.alkaline { background: #a66b32; color: white; }
+.transition { background: #376c9e; color: white; }
+.post-transition { background: #607d8b; color: white; }
+.metalloid { background: #558b70; color: white; }
+.nonmetal { background: #568c38; color: white; }
+.halogen { background: #8a6bb5; color: white; }
+.noble { background: #397f91; color: white; }
+.lanthanoid { background: #a45d85; color: white; }
+.actinoid { background: #9b7041; color: white; }
+
+.element.selected {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.element.hidden {
+    display: none;
+}
+
+.element-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.legend-item {
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+#elementDetails {
+    margin-top: 18px;
+    line-height: 1.8;
+}
+
+.element-detail-title {
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--accent);
+}
+
+@media (max-width: 700px) {
+    .periodic-table {
+        grid-template-columns: repeat(18, 48px);
+    }
+}
+/* =====================================
+   ELECTROCHEMISTRY CALCULATOR
+===================================== */
+
+#electrochemistry {
+    padding: 25px;
+}
+
+#electrochemistry .page-header {
+    margin-bottom: 30px;
+}
+
+#electrochemistry .page-header h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+#electrochemistry .page-header p {
+    color: var(--text);
+    opacity: 0.75;
+}
+
+#electrochemistry .tool-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#electrochemistry .tool-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+#electrochemistry .tool-card h2 {
+    font-size: 21px;
+    margin-bottom: 8px;
+    color: var(--accent);
+}
+
+#electrochemistry .tool-card p {
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+#electrochemistry .input-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 20px;
+}
+
+#electrochemistry .input-grid div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#electrochemistry label {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+#electrochemistry input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card-bg);
+    color: var(--text);
+    outline: none;
+    font-size: 15px;
+}
+
+#electrochemistry input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(0, 120, 255, 0.12);
+}
+
+#electrochemistry button {
+    padding: 12px 22px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#electrochemistry button:hover {
+    opacity: 0.88;
+    transform: translateY(-2px);
+}
+
+#electrochemistry .result-box {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 9px;
+    background: rgba(0, 150, 100, 0.08);
+    border-left: 4px solid #00a878;
+    font-weight: 600;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+#electrochemistry .working-box {
+    margin-top: 12px;
+    padding: 15px;
+    border-radius: 9px;
+    background: rgba(100, 120, 150, 0.08);
+    border: 1px solid var(--border);
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+#electrochemistry .result-box:empty,
+#electrochemistry .working-box:empty {
+    display: none;
+}
+
+/* MOBILE RESPONSIVENESS */
+
+@media (max-width: 650px) {
+
+    #electrochemistry {
+        padding: 12px;
+    }
+
+    #electrochemistry .input-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #electrochemistry .tool-card {
+        padding: 18px;
+    }
+
+    #electrochemistry .page-header h1 {
+        font-size: 23px;
+    }
+
+    #electrochemistry .tool-card h2 {
+        font-size: 18px;
+    }
+
+    #electrochemistry button {
+        width: 100%;
+    }
+}
+/* =====================================
+   ELECTROCHEMICAL CELL DIAGRAM
+===================================== */
+
+#electrochemistry .cell-diagram-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 25px 0;
+    padding: 15px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+}
+
+#electrochemistry .electrochemical-diagram {
+    display: block;
+    width: 100%;
+    min-width: 550px;
+    max-width: 850px;
+    height: auto;
+    margin: auto;
+}
+
+#electrochemistry .cell-reactions {
+    padding: 22px;
+    margin-top: 20px;
+    border-radius: 12px;
+    background: rgba(0, 120, 255, 0.06);
+    border: 1px solid var(--border);
+}
+
+#electrochemistry .cell-reactions h3 {
+    color: var(--accent);
+    margin-bottom: 18px;
+}
+
+#electrochemistry .cell-reactions p {
+    margin: 10px 0;
+    line-height: 1.7;
+}
+
+#electrochemistry .cell-reactions p:nth-of-type(even) {
+    font-family: monospace;
+    font-size: 15px;
+    padding: 10px;
+    background: rgba(100, 120, 150, 0.08);
+    border-radius: 6px;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 650px) {
+
+    #electrochemistry .cell-diagram-wrap {
+        padding: 8px;
+    }
+
+    #electrochemistry .cell-reactions {
+        padding: 15px;
+    }
+
+}
+/* INTERACTIVE CELL SELECTOR */
+
+#electrochemistry .cell-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0;
+    max-width: 400px;
+}
+
+#electrochemistry .cell-selector label {
+    font-weight: 700;
+}
+
+#electrochemistry .cell-selector select {
+    padding: 13px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    color: var(--text);
+    font-size: 15px;
+    outline: none;
+}
+
+#electrochemistry .cell-selector select:focus {
+    border-color: var(--accent);
+}
+
+/* ELECTROCHEMICAL SERIES EXPLORER */
+
+#electrochemistry .electro-series-card {
+    margin-top: 25px;
+}
+
+#electrochemistry .electro-series-card h3 {
+    margin-bottom: 12px;
+}
+
+#electrochemistry #seriesSearch {
+    width: 100%;
+    padding: 13px;
+    margin: 15px 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card-bg);
+    color: var(--text);
+    font-size: 15px;
+}
+
+#electrochemistry #seriesTable {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 15px;
+}
+
+#electrochemistry .series-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 350px;
+}
+
+#electrochemistry .series-table th,
+#electrochemistry .series-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+#electrochemistry .series-table th {
+    background: var(--accent);
+    color: white;
+}
+
+#electrochemistry .series-table tr:hover {
+    background: var(--card-bg);
+}
+
+#electrochemistry .series-positive {
+    color: #16a34a;
+    font-weight: 700;
+}
+
+#electrochemistry .series-negative {
+    color: #dc2626;
+    font-weight: 700;
+}
+
+#electrochemistry #seriesResult {
+    margin-top: 20px;
+}
+
+#electrochemistry #seriesWorking {
+    margin-top: 15px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+    #electrochemistry .series-table th,
+    #electrochemistry .series-table td {
+        padding: 9px;
+        font-size: 13px;
+    }
+}
+
+/* ADVANCED REDOX BALANCER */
+
+#balancer .redox-card {
+    margin-top: 25px;
+}
+
+#balancer .redox-card h3 {
+    margin-bottom: 12px;
+}
+
+#balancer .redox-card label {
+    display: block;
+    margin-top: 18px;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+#balancer #redoxEquation,
+#balancer #redoxMedium {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card-bg);
+    color: var(--text);
+    font-size: 15px;
+    outline: none;
+}
+
+#balancer #redoxEquation:focus,
+#balancer #redoxMedium:focus {
+    border-color: var(--accent);
+}
+
+#balancer .redox-card button {
+    margin-top: 20px;
+}
+
+#balancer #redoxResult {
+    margin-top: 22px;
+}
+
+#balancer #redoxWorking {
+    margin-top: 15px;
+    line-height: 1.9;
+    overflow-wrap: anywhere;
+}
+
+#balancer #redoxWorking p {
+    margin-bottom: 12px;
+}
+
+@media (max-width: 600px) {
+    #balancer .redox-card {
+        padding: 15px;
+    }
+
+    #balancer #redoxEquation,
+    #balancer #redoxMedium {
+        font-size: 14px;
+    }
+}
+
+/* ADVANCED STOICHIOMETRY CALCULATOR */
+
+#balancer .stoichiometry-card {
+    margin-top: 25px;
+}
+
+#balancer .stoichiometry-card h3 {
+    margin-bottom: 12px;
+}
+
+#balancer .stoichiometry-card h4 {
+    margin-top: 25px;
+    margin-bottom: 15px;
+    color: var(--accent);
+}
+
+#balancer .stoichiometry-card label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: 600;
+}
+
+#balancer .stoichiometry-card input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card-bg);
+    color: var(--text);
+    font-size: 15px;
+    outline: none;
+}
+
+#balancer .stoichiometry-card input:focus {
+    border-color: var(--accent);
+}
+
+#balancer .stoichiometry-card .input-grid {
+    gap: 18px;
+    margin-top: 15px;
+}
+
+#balancer .stoichiometry-card button {
+    margin-top: 25px;
+}
+
+#balancer #stoichiometryResult {
+    margin-top: 22px;
+}
+
+#balancer #stoichiometryWorking {
+    margin-top: 18px;
+    line-height: 1.9;
+    overflow-wrap: anywhere;
+}
+
+#balancer #stoichiometryWorking p {
+    margin-bottom: 12px;
+}
+
+@media (max-width: 600px) {
+    #balancer .stoichiometry-card {
+        padding: 15px;
+    }
+
+    #balancer .stoichiometry-card input {
+        font-size: 14px;
+    }
+}
+
